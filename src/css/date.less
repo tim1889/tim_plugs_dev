@@ -1,0 +1,58 @@
+@import 'mix.less';
+
+.box {
+  margin: 20px auto;
+  width: 305px;
+}
+.date-panel {
+  padding: 10px;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border: 2px solid @main;
+  border-radius: 6px;
+  color: @main;
+  .date-operate {
+    width: 100%;
+    height: 30px;
+    border-bottom: 2px solid @main;
+    div {
+      width: 41.5%;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  ol, ul {
+    width: 100%;  
+    font-size: 0;
+    li {
+      font-size: 16px;      
+      width: 40px;
+      height: 40px;
+      line-height: 28px;
+      display: inline-block;
+      text-align: center;
+      overflow: hidden;
+      cursor: pointer;
+      i {
+        margin: 5px auto;
+        width: 30px;
+        height: 30px;
+        font-style: normal;
+        border-radius: 50%;
+        display: block;
+      }
+      .active {
+        background-color: @main-light;
+        color: #fff;
+      }
+      .hover {
+        border: 1px solid @main-light;
+      }
+      .hidden {
+        color: @main-less;
+      }
+    }
+  }
+}

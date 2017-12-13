@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>edit</title>
+  <link rel="stylesheet" href="css/edit.css"></link>
+</head>
+<body>
+  <div class="edit-box">
+    <menu>
+      <i onclick="addBold()">B</i>
+      <i onclick="italic()">I</i>
+      <i onclick="underline()">U</i>
+      <i onclick="highlight()">H</i>
+    </menu>
+    <div class="edit" contenteditable>
+  
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+
+    function addBold () {
+      document.execCommand("Bold", false, null);   
+      console.log('~~~~')   
+    };
+
+    function italic () {
+      document.execCommand('italic');
+    };
+
+    function underline () {
+      document.execCommand('underline');
+    };
+
+    function highlight () {
+      document.execCommand('hiliteColor');
+    };
+
+    function addPicture () {
+      const box = this.$refs.editBox;
+      console.log(box)
+    }
+</script>

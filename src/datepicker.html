@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>date picker</title>
+  <link rel="stylesheet" href="css/date.css"></link>
+</head>
+<body>
+  <div class="box">
+    <div class="date-panel">
+      <div class="date-operate">
+        <div id="year">2018</div>年
+        <div id="mouth">12</div>月
+      </div>
+      <ol>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+        <li>日</li>
+      </ol>
+      <ul id="days"></ul>
+    </div>
+  </div>
+</body>
+<script>
+  const days = document.getElementById('days');
+  const date = new Date();
+  const today = date.getDate();
+
+  initCalendar();
+
+  function initCalendar () {
+    let dom = '';
+    const fd = firstDay();
+    for (let i = 1; i < fd; i++) {
+        dom = dom + '<li><i class="hidden">' + (30 - (fd - i) + 1) + '</i></li>';
+    }
+    for (let i = 1; i < 32; i++) {
+      if (i === today) {
+        dom = dom + '<li><i class="active">' + i + '</i></li>';
+      } else {
+        dom = dom + '<li><i onclick="chooiseDay(this)">' + i + '</i></li>';
+      }
+    }
+    days.innerHTML = dom;
+  }
+
+  function chooiseDay (e) {
+    e.className = 'hover';
+  }
+
+  function firstDay () {
+    const y = document.getElementById('year').innerText;
+    const m = document.getElementById('mouth').innerText - 1; //此处有个隐式的数据类型转换
+    const str = new Date(y, m, 1);
+    return str.getDay();
+  }
+</script>
+</html>
