@@ -66,7 +66,7 @@ return gulp.src(config.input.css)
 });
 
 gulp.task('less', function () {
-  return gulp.src(config.input.css)
+  return gulp.src(config.input.less)
     .pipe(less())
     .pipe(minifyCss())
     .pipe(rev())     

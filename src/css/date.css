@@ -14,6 +14,7 @@ li {
   width: 305px;
 }
 .date-panel {
+  position: relative;
   padding: 10px;
   width: 100%;
   height: auto;
@@ -40,11 +41,11 @@ li {
 }
 .date-panel ol li,
 .date-panel ul li {
-  font-size: 16px;
   width: 40px;
   height: 40px;
   line-height: 28px;
   display: inline-block;
+  font-size: 16px;
   text-align: center;
   overflow: hidden;
   cursor: pointer;
@@ -63,11 +64,17 @@ li {
   background-color: #c0dfd9;
   color: #fff;
 }
-.date-panel ol li .hover,
-.date-panel ul li .hover {
-  border: 1px solid #c0dfd9;
-}
 .date-panel ol li .hidden,
 .date-panel ul li .hidden {
   color: #e9ece5;
+}
+.date-panel .focus-day {
+  position: absolute;
+  top: 40px;
+  left: -30px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #c0dfd9;
+  border-radius: 50%;
+  visibility: hidden;
 }

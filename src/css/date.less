@@ -5,6 +5,7 @@
   width: 305px;
 }
 .date-panel {
+  position: relative;
   padding: 10px;
   width: 100%;
   height: auto;
@@ -27,11 +28,11 @@
     width: 100%;  
     font-size: 0;
     li {
-      font-size: 16px;      
       width: 40px;
       height: 40px;
       line-height: 28px;
       display: inline-block;
+      font-size: 16px;      
       text-align: center;
       overflow: hidden;
       cursor: pointer;
@@ -47,12 +48,19 @@
         background-color: @main-light;
         color: #fff;
       }
-      .hover {
-        border: 1px solid @main-light;
-      }
       .hidden {
         color: @main-less;
       }
     }
+  }
+  .focus-day {  
+    position: absolute;
+    top: 40px;
+    left: -30px;
+    width: 40px;
+    height: 40px;      
+    border: 1px solid @main-light;
+    border-radius: 50%;
+    visibility: hidden;
   }
 }
