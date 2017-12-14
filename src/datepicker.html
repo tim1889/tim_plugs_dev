@@ -8,65 +8,91 @@
   <link rel="stylesheet" href="css/date.css"></link>
 </head>
 <body>
-  <div class="box">
-    <div class="date-panel">
-      <div class="date-operate">
-        <div id="year">2017</div>年
-        <div id="mouth">12</div>月
-      </div>
-      <ol>
-        <li>一</li>
-        <li>二</li>
-        <li>三</li>
-        <li>四</li>
-        <li>五</li>
-        <li>六</li>
-        <li>日</li>
-      </ol>
-      <ul id="days"></ul>
-      <div id="focusDay" class="focus-day"></div>
-    </div>
-  </div>
+  <div id="timCalender"></div>
 </body>
+
 <script>
-  const focusDay = document.getElementById('focusDay');
-  const days = document.getElementById('days');
-  const date = new Date();
-  const today = date.getDate();
+  'use strict';
+  class DatePicker {
+    constructor (...arr) {
+      const obj = arr[0];
+      this.calender = document.getElementById(obj.id);
+      this.themeColor = obj.themeColor;
 
-  initCalendar();
-
-  function initCalendar () {
-    let dom = '';
-    const fd = firstDay();
-    for (let i = 1; i < fd; i++) {
-      dom = dom + '<li><i class="hidden">' + (30 - (fd - i) + 1) + '</i></li>';
+      this.days = document.getElementById('days');
+      this.ymList = document.getElementById('ymList');
+      this.date = new Date();
+      this.today = this.date.getDate();
     }
-    for (let i = 1; i < 32; i++) {
-      if (i === today) {
-        dom = dom + '<li><i class="active">' + i + '</i></li>';
+    initCalendar () {
+      const dom = '<div class="date-panel" style="color: ' + this.themeColor + '">\
+        <div class="date-operate">\
+          <div onclick="changeYear()">2018</div>年\
+          <div id="mouth">12</div>月\
+        </div>\
+        <div id="year"></div>\
+        <div>\
+          <ol>\
+            <li>一</li>\
+            <li>二</li>\
+            <li>三</li>\
+            <li>四</li>\
+            <li>五</li>\
+            <li>六</li>\
+            <li>日</li>\
+          </ol>\
+          <ul id="days"></ul>\
+          <div id="focusDay" class="focus-day"></div>\
+        </div>\
+      </div>';
+      this.calender.innerHTML = dom;
+      this.updateCalender();
+    }
+    updateCalender () {
+      let dom = '';
+      const fd = this.firstDay();
+      for (let i = 1; i < fd; i++) {
+        dom = dom + '<li><i class="hidden">' + (30 - (fd - i) + 1) + '</i></li>';
+      }
+      for (let i = 1; i < 32; i++) {
+        if (i === this.today) {
+          dom = dom + '<li><i class="active" style="background-color:' + this.themeColor + '">' + i + '</i></li>';
+        } else {
+          dom = dom + '<li><i onclick="focusDate(this, ' + (fd + i - 1) + ')">' + i + '</i></li>';
+        }
+      }
+      days.innerHTML = dom; 
+    }
+    firstDay () {
+      const y = document.getElementById('year').innerText;
+      const m = document.getElementById('mouth').innerText - 1; //此处有个隐式的数据类型转换
+      const str = new Date(y, m, 1);
+      return str.getDay();
+    }
+    focusDate (e, i) {
+      const x = Math.ceil(i / 7);
+      const y = 7 - (Math.ceil(i / 7) * 7 - i);
+      if (!focusDay.style.visibility) {
+        focusDay.style.visibility = 'visible';
+      }
+      focusDay.style.transform = 'translate(' + (40 * y) + 'px, ' + (40 * x) + 'px)';
+    }
+    changeYear (e) {
+      if (ymList.style.height) {
+        ymList.style.height = "";
       } else {
-        dom = dom + '<li><i onclick="focusDate(this, ' + (fd + i - 1) + ')">' + i + '</i></li>';
+        ymList.style.height = "302px";
       }
     }
-    days.innerHTML = dom;
-  }
+  };
+</script>
 
-  function focusDate (e, i) {
-    const x = Math.ceil(i / 7);
-    const y = 7 - (Math.ceil(i / 7) * 7 - i);
-    if (!focusDay.style.visibility) {
-      focusDay.style.visibility = 'visible';
-    }
-    focusDay.style.transform = 'translate(' + 40 * y + 'px, ' + (40 * x) + 'px)';
-  }
+<script>
+    const timCalendar = new DatePicker({
+      id: 'timCalender',
+      themeColor: '#b3c2bf'
+    });
 
-  function firstDay () {
-    const y = document.getElementById('year').innerText;
-    const m = document.getElementById('mouth').innerText - 1; //此处有个隐式的数据类型转换
-    const str = new Date(y, m, 1);
-    return str.getDay();
-  }
-
+    timCalendar.initCalendar();
 </script>
 </html>
