@@ -18,17 +18,17 @@
       const obj = arr[0];
       this.calender = document.getElementById(obj.id);
       this.themeColor = obj.themeColor;
-
       this.days = document.getElementById('days');
       this.ymList = document.getElementById('ymList');
       this.date = new Date();
-      this.today = this.date.getDate();
     }
     initCalendar () {
+      const year = this.date.getFullYear();
+      const month = this.date.getMonth() + 1;
       const dom = '<div class="date-panel" style="color: ' + this.themeColor + '">\
         <div class="date-operate">\
-          <div onclick="changeYear()">2018</div>年\
-          <div id="mouth">12</div>月\
+          <div onclick="changeYear()">' + year + '</div>年\
+          <div id="mouth">' + month + '</div>月\
         </div>\
         <div id="year"></div>\
         <div>\
@@ -50,18 +50,28 @@
     }
     updateCalender () {
       let dom = '';
-      const fd = this.firstDay();
-      for (let i = 1; i < fd; i++) {
-        dom = dom + '<li><i class="hidden">' + (30 - (fd - i) + 1) + '</i></li>';
-      }
-      for (let i = 1; i < 32; i++) {
-        if (i === this.today) {
-          dom = dom + '<li><i class="active" style="background-color:' + this.themeColor + '">' + i + '</i></li>';
+      const today = this.date.getDate();
+      const fd = this.firstDay() - 1;
+      for (let i = 1; i < 43; i++) {
+        let icon = '';
+        if (i < fd) {
+          icon = '<i name="day" style="color:' + this.themeColor + '; opacity: 0.5">' + (30 - (fd - i) + 1) + '</i>';
+        } else if ((i - fd + 1) === today) {
+          icon = '<i name="day" class="active" style="background-color:' + this.themeColor + '">' + (i - fd + 1) + '</i>';
+        } else if ((i - fd + 1) > 31) {
+          icon = '<i name="day" style="color:' + this.themeColor + '; opacity: 0.5">' + (i - fd - 30)  + '</i>';
         } else {
-          dom = dom + '<li><i onclick="focusDate(this, ' + (fd + i - 1) + ')">' + i + '</i></li>';
+          icon = '<i name="day">' + (i - fd + 1) + '</i>';
+        }
+        dom = dom + '<li>' + icon + '</li>'
+      }
+      days.innerHTML = dom;
+      //添加点击事件 
+      for (let i = 1; i < (31 + fd); i++) {
+        document.getElementsByName('day')[i].onclick = () => {
+          this.focusDate(i + 1);
         }
       }
-      days.innerHTML = dom; 
     }
     firstDay () {
       const y = document.getElementById('year').innerText;
@@ -69,7 +79,7 @@
       const str = new Date(y, m, 1);
       return str.getDay();
     }
-    focusDate (e, i) {
+    focusDate (i) {
       const x = Math.ceil(i / 7);
       const y = 7 - (Math.ceil(i / 7) * 7 - i);
       if (!focusDay.style.visibility) {
