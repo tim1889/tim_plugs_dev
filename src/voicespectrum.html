@@ -7,6 +7,26 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="css/app.css"></link>
+  <style>
+    .mix {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+    }
+    .mix img {
+      width: 200px;
+      height: 200px;
+    }
+    .mix img:last-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-weight: bolder;
+      mix-blend-mode: lighten;
+      /* background-blend-mode: overlay */
+    }
+  </style>
 </head>
 
 <body>
@@ -18,6 +38,11 @@
   <canvas id="spectrum" class="circle">
     你的浏览器不支持 canves ~
   </canvas>
+  
+  <div class="mix">
+    <img src="img/1.jpg" alt="背景图"/>
+    <img src="img/2.jpg" alt="背景图"/>
+  </div>
 </body>
 
 <script src="js/spectrum.js"></script>

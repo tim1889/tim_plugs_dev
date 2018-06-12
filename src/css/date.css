@@ -19,6 +19,7 @@ li {
   border: 2px solid;
   border-radius: 6px;
   overflow: hidden;
+  box-shadow: 5px 5px 3px #ddd;
 }
 .date-panel .date-operate {
   width: 100%;
@@ -60,8 +61,13 @@ li {
   width: 30px;
   height: 30px;
   font-style: normal;
-  border-radius: 50%;
+  border-radius: 4px;
   display: block;
+}
+.date-panel ol li i:hover,
+.date-panel ul li i:hover {
+  font-weight: bold;
+  font-size: 20px;
 }
 .date-panel ol li .active,
 .date-panel ul li .active {
@@ -77,7 +83,16 @@ li {
   left: -30px;
   width: 40px;
   height: 40px;
-  border: 1px solid #c0dfd9;
-  border-radius: 50%;
+  border-bottom: 2px solid #ecd06f;
+  visibility: hidden;
+}
+.date-panel #yearList {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  background-color: #fff;
+  z-index: 1;
+  width: 100%;
+  height: 100px;
   visibility: hidden;
 }

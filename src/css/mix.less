@@ -9,6 +9,10 @@ ul, ol, li {
   list-style-type: none;
 }
 
+.item-shadow (@h, @v , @spread, @color) {
+  box-shadow: @h @v @spread @color;
+}
+@base: 40px;
 @main-deep:     #3b3a36;
 @main:          #b3c2bf;
 @main-less:     #e9ece5;

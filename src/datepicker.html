@@ -21,16 +21,19 @@
       this.days = document.getElementById('days');
       this.ymList = document.getElementById('ymList');
       this.date = new Date();
+      this.year = this.date.getFullYear();
     }
     initCalendar () {
-      const year = this.date.getFullYear();
+      const year = this.year;
       const month = this.date.getMonth() + 1;
       const dom = '<div class="date-panel" style="color: ' + this.themeColor + '">\
         <div class="date-operate">\
-          <div onclick="changeYear()">' + year + '</div>年\
+          <div>\
+            <span id="year">' + year + '</span>\
+            <ul id="yearList"></ul>\
+          </div>年\
           <div id="mouth">' + month + '</div>月\
         </div>\
-        <div id="year"></div>\
         <div>\
           <ol>\
             <li>一</li>\
@@ -47,11 +50,13 @@
       </div>';
       this.calender.innerHTML = dom;
       this.updateCalender();
+      //选择年份
+      this.MoreYear();
     }
     updateCalender () {
       let dom = '';
       const today = this.date.getDate();
-      const fd = this.firstDay() - 1;
+      const fd = this.firstDay();
       for (let i = 1; i < 43; i++) {
         let icon = '';
         if (i < fd) {
@@ -70,6 +75,9 @@
       for (let i = 1; i < (31 + fd); i++) {
         document.getElementsByName('day')[i].onclick = () => {
           this.focusDate(i + 1);
+          if ((i + 1) === 31) {
+            
+          }
         }
       }
     }
@@ -92,6 +100,18 @@
         ymList.style.height = "";
       } else {
         ymList.style.height = "302px";
+      }
+    }
+    MoreYear () {
+      const indexY = document.getElementById('year');
+      const list = document.getElementById('yearlist');
+      indexY.onclick = () => {
+        let dom = '';
+        for(let i = 0; i < 5; i++) {
+          dom = dom + '<li>' + (this.year + i) + '</li>'
+        }
+        list.innerHTML = dom;
+        list.style.visibility = 'visible';
       }
     }
   };

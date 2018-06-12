@@ -9,6 +9,7 @@
   border: 2px solid;
   border-radius: 6px;
   overflow: hidden;
+  .item-shadow(5px, 5px, 3px, #ddd);
   .date-operate {
     width: 100%;
     min-height: 30px;
@@ -44,8 +45,12 @@
         width: 30px;
         height: 30px;
         font-style: normal;
-        border-radius: 50%;
+        border-radius: 4px;
         display: block;
+        &:hover {
+          font-weight: bold;
+          font-size: 20px;
+        }
       }
       .active {
         // background-color: @main-light;
@@ -62,8 +67,18 @@
     left: -30px;
     width: 40px;
     height: 40px;      
-    border: 1px solid @main-light;
-    border-radius: 50%;
+    border-bottom: 2px solid @warning;
+    // border-radius: 50%;
+    visibility: hidden;
+  }
+  #yearList {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    background-color: #fff;
+    z-index: 1;
+    width: 100%;
+    height: 100px;
     visibility: hidden;
   }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>date picker</title>
+  <link rel="stylesheet" href="css/date.css"></link>
+</head>
+
+<body>
+  <ul id="gallery"></ul>
+</body>
+
+<script src="js/gallery.js"></script>
+
+<script>
+  const g = new Gallery('gallery');
+  el = document.getElementById('gallery');
+  
+  el.innerHTML = g.render();
+</script>

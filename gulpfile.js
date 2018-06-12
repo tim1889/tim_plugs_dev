@@ -112,7 +112,8 @@ gulp.task('rev', function() {
 
 gulp.task('connect',function(){
   connect.server({
-    livereload: true
+    livereload: true,
+    port: 8888
   });
 })
 
